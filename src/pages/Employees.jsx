@@ -12,10 +12,13 @@ import {
 import { employeesData, employeesGrid } from "../data/dummy";
 
 import { Header } from "../components";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Employees = () => {
+  const { currentMode } = useStateContext();
+
   return (
-    <div className="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl">
+    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Employees" />
       <GridComponent
         dataSource={employeesData}
@@ -23,6 +26,7 @@ const Employees = () => {
         allowSorting
         toolbar={["Search"]}
         width="auto"
+        background={currentMode === "dark" ? "#33373E" : "#fff"}
       >
         <ColumnsDirective>
           {employeesGrid.map((item, index) => (
